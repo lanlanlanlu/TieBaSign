@@ -169,10 +169,13 @@ def client_sign(bduss, tbs, fid, kw):
 
 
 def main():
+    sckey = 'SCT60912TujKkUVSIhPtK2zKoVvoBkSVR'
+    url = 'https://sctapi.ftqq.com/' + sckey + '.send?text=贴吧签到&desp=未检测到BDUSS!'
     b = os.environ['BDUSS'].split('#')
     for n, i in enumerate(b):
         if(len(i) <= 0):
             logger.info("未检测到BDUSS")
+            requests.get(url)
             continue
         logger.info("开始签到第" + str(n) + "个用户" + i)
         tbs = get_tbs(i)
